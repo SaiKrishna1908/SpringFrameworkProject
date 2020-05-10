@@ -1,5 +1,6 @@
 package com.spring5.springserviceproject;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringserviceprojectApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(SpringserviceprojectApplication.class, args);
+
     }
+
+
 
 }
