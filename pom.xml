@@ -16,7 +16,7 @@
     </parent>
     <groupId>com.spring5</groupId>
     <artifactId>springserviceproject</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>springserviceproject</name>
     <description>Demo project for Spring Boot</description>
 
@@ -47,6 +47,6 @@
         </plugins>
     </build>
 
-    <scm><developerConnection>scm:git:git@github.com:SaiKrishna1908/SpringFrameworkProject.git</developerConnection>  <tag>springserviceproject-0.0.1</tag>
+    <scm><developerConnection>scm:git:git@github.com:SaiKrishna1908/SpringFrameworkProject.git</developerConnection>  <tag>HEAD</tag>
   </scm>
 </project>
