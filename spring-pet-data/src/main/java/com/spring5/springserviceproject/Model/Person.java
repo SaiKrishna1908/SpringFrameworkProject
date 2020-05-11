@@ -1,6 +1,6 @@
 package com.spring5.springserviceproject.Model;
 
-public class Person {
+public class Person  extends  BaseEntity{
     private String firstName;
     private String secondName;
 
