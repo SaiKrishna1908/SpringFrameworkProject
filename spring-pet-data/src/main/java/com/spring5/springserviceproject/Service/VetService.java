@@ -1,17 +1,9 @@
 package com.spring5.springserviceproject.Service;
 
-import com.spring5.springserviceproject.Model.Vet;
+import com.sun.xml.bind.v2.model.core.ID;
 
-import java.util.Set;
+public interface VetService extends CRUD<VetService, ID>{
 
-public interface VetService {
-
-    Vet findById(long id);
-
-    Set<Vet> findAll();
-
-
-    Vet save(Vet vet);
 
 
 
