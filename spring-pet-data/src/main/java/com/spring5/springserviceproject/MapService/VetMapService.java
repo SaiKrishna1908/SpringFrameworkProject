@@ -1,11 +1,12 @@
 package com.spring5.springserviceproject.MapService;
 
 import com.spring5.springserviceproject.Model.Vet;
-import com.spring5.springserviceproject.Service.CRUD;
+import com.spring5.springserviceproject.Service.VetService;
 
 import java.util.Set;
 
-public class VetMapService extends MapService<Vet, Long> implements CRUD<Vet,Long> {
+public class VetMapService extends MapService<Vet, Long> implements VetService {
+
     @Override
     public Vet save(Vet object) {
         return super.save(object.getId(),object);

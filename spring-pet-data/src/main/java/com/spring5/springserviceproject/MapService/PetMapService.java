@@ -1,11 +1,11 @@
 package com.spring5.springserviceproject.MapService;
 
 import com.spring5.springserviceproject.Model.Pet;
-import com.spring5.springserviceproject.Service.CRUD;
+import com.spring5.springserviceproject.Service.PetService;
 
 import java.util.Set;
 
-public class PetMapService extends MapService<Pet, Long> implements CRUD<Pet, Long> {
+public class PetMapService extends MapService<Pet, Long> implements PetService {
     @Override
     public Pet save(Pet object) {
         return super.save(object.getId(),object);
