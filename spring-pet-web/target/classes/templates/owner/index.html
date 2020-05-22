@@ -5,6 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-    <h1 th:text="'Owner Page'"></h1>
+
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>SId</th>
+            <th>FirstName</th>
+            <th>SecondName</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <!--/*@thymesVar id="owners" type="com.spring5.springserviceproject.Model.Owner"*/-->
+            <tr th:each="owner:${owners}">
+                <td th:text="${owner.id}">1</td>
+                <td th:text="${owner.firstName}">Jane</td>
+                <td th:text="${owner.secondName}">Poang</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

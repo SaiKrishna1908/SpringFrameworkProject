@@ -1,7 +1,5 @@
 package com.spring5.springserviceproject.bootstrap;
 
-import com.spring5.springserviceproject.MapService.OwnerMapService;
-import com.spring5.springserviceproject.MapService.VetMapService;
 import com.spring5.springserviceproject.Model.Owner;
 import com.spring5.springserviceproject.Model.Vet;
 import com.spring5.springserviceproject.Service.OwnerService;
@@ -15,9 +13,10 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        this.ownerService = new OwnerMapService();
-        this.vetService = new VetMapService();
+
+    public DataLoader(OwnerService ownerService , VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
@@ -26,14 +25,14 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Jackson");
         owner1.setSecondName("Florence");
-        owner1.setId(1L);
+
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Plimbo");
         owner2.setSecondName("dumbo");
-        owner2.setId(2L);
+
 
         ownerService.save(owner2);
 
@@ -42,15 +41,14 @@ public class DataLoader implements CommandLineRunner {
         Vet vet1 = new Vet();
 
         vet1.setFirstName("Payqwe");
-        vet1.setFirstName("doom");
-        vet1.setId(1L);
+        vet1.setSecondName("doom");
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
 
         vet2.setFirstName("Leo");
         vet2.setSecondName("cabin");
-        vet2.setId(2L);
+
 
         vetService.save(vet2);
 

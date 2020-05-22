@@ -5,6 +5,24 @@
     <title>Vetenerian Page</title>
 </head>
 <body>
-    <h1 th:text="'Vet Page'"></h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>SId</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="vet : ${vets}">
+                <td th:text="${vet.id}"></td>
+                <td th:text="${vet.firstName}"></td>
+                <td th:text="${vet.secondName}"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

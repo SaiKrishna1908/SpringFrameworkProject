@@ -2,13 +2,15 @@ package com.spring5.springserviceproject.MapService;
 
 import com.spring5.springserviceproject.Model.Owner;
 import com.spring5.springserviceproject.Service.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class OwnerMapService extends MapService<Owner, Long> implements OwnerService {
     @Override
     public Owner save(Owner object) {
-        return super.save(object.getId(), object);
+        return super.save( object);
     }
 
     @Override

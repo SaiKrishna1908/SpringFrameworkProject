@@ -1,16 +1,26 @@
 package com.spring5.springserviceproject.MapService;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import com.spring5.springserviceproject.Model.BaseEntity;
 
-public abstract class MapService<T, ID> {
+import java.util.*;
 
-    protected Map<ID,T> map = new HashMap<>();
+public abstract class MapService<T extends BaseEntity, ID extends Long> {
 
-      T save(ID id, T object){
-        return map.put(id, object);
+    protected Map<Long,T> map = new HashMap<>();
+
+      T save(T object){
+
+          if(object!=null) {
+              if (object.getId() == null)
+                  object.setId(getNextId());
+
+              map.put(object.getId(), object);
+          }
+          else{
+              throw new RuntimeException();
+          }
+
+          return object;
     }
 
      Set<T> findAll(){
@@ -28,5 +38,19 @@ public abstract class MapService<T, ID> {
     void delete(T object){
           map.entrySet().removeIf(idtEntry -> idtEntry.getValue().equals(object));
     }
+
+    private Long getNextId(){
+
+          Long nextId = null;
+
+          try{
+              nextId= Collections.max(map.keySet())+1;
+          }
+          catch (NoSuchElementException ex){
+              return 1L;
+          }
+
+          return nextId;
+      }
 
 }
