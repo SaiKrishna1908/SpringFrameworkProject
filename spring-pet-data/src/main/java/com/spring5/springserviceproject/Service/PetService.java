@@ -1,6 +1,9 @@
 package com.spring5.springserviceproject.Service;
 
-public interface PetService extends CRUD<PetService, Long> {
+
+import com.spring5.springserviceproject.Model.Pet;
+
+public interface PetService extends CRUD<Pet, Long> {
 
 
 }
