@@ -49,7 +49,6 @@ public abstract class MapService<T extends BaseEntity, ID extends Long> {
           catch (NoSuchElementException ex){
               return 1L;
           }
-
           return nextId;
       }
 
