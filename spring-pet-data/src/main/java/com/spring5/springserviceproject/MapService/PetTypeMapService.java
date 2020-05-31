@@ -2,9 +2,11 @@ package com.spring5.springserviceproject.MapService;
 
 import com.spring5.springserviceproject.Model.PetType;
 import com.spring5.springserviceproject.Service.PetTypeService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetTypeMapService extends MapService<PetType, Long> implements PetTypeService {
     @Override
     public PetType save(PetType object) {

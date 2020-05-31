@@ -1,9 +1,11 @@
 package com.spring5.springserviceproject.bootstrap;
 
 import com.spring5.springserviceproject.Model.Owner;
+import com.spring5.springserviceproject.Model.PetType;
 import com.spring5.springserviceproject.Model.Speciality;
 import com.spring5.springserviceproject.Model.Vet;
 import com.spring5.springserviceproject.Service.OwnerService;
+import com.spring5.springserviceproject.Service.PetTypeService;
 import com.spring5.springserviceproject.Service.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,11 +18,12 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-
-    public DataLoader(OwnerService ownerService , VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
@@ -72,5 +75,17 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet2);
 
         System.out.println("Loaded Vet's ...");
+
+        PetType dog = new PetType();
+        dog.setName("Dog");
+
+        petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        cat.setName("Cat");
+
+        petTypeService.save(cat);
+
+        System.out.println("Loaded PetType's ...");
     }
 }
