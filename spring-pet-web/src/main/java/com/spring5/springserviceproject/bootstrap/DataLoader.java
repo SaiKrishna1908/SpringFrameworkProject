@@ -3,13 +3,12 @@ package com.spring5.springserviceproject.bootstrap;
 import com.spring5.springserviceproject.Model.*;
 import com.spring5.springserviceproject.Service.OwnerService;
 import com.spring5.springserviceproject.Service.PetTypeService;
+import com.spring5.springserviceproject.Service.SpecialityService;
 import com.spring5.springserviceproject.Service.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -17,16 +16,26 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialityService specialityService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialityService = specialityService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
+        int count = petTypeService.findAll().size();
+
+        if(count == 0) {
+            loadData();
+        }
+    }
+
+    private void loadData() {
         Owner owner1 = new Owner();
         owner1.setFirstName("Jackson");
         owner1.setSecondName("Florence");
@@ -72,30 +81,30 @@ public class DataLoader implements CommandLineRunner {
 
         Vet vet1 = new Vet();
 
-        Speciality speciality1 = new Speciality();
-        speciality1.setDescription("BBA Gold Medal");
+        Speciality radiology = new Speciality();
+        radiology.setDescription("Radiology");
+        Speciality savedRadiology = specialityService.save(radiology);
 
-        Set<Speciality> specialitySet1 = new HashSet<>();
-        specialitySet1.add(speciality1);
+        Speciality dentistry = new Speciality();
+        dentistry.setDescription("Densitry");
+        Speciality savedDentistry = specialityService.save(dentistry);
+
+        Speciality surgery = new Speciality();
+        surgery.setDescription("Surgery");
+        Speciality savedSurgery = specialityService.save(surgery);
+
 
         vet1.setFirstName("Payqwe");
         vet1.setSecondName("doom");
-        vet1.setSpecialitySet(specialitySet1);
+        vet1.getSpecialitySet().add(savedRadiology);
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
 
-        Speciality speciality2 = new Speciality();
-        speciality2.setDescription("5 stars on yelp");
-
-        Set<Speciality> specialitySet2 = new HashSet<>();
-        specialitySet2.add(speciality2);
-
-        vet2.setSpecialitySet(specialitySet2);
         vet2.setFirstName("Leo");
         vet2.setSecondName("cabin");
-
+        vet2.getSpecialitySet().add(savedSurgery);
 
         vetService.save(vet2);
 
