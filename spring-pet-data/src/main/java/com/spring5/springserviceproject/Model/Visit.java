@@ -1,12 +1,21 @@
 package com.spring5.springserviceproject.Model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 
+@Entity
+@Table(name = "visits")
 public class Visit {
 
+    @Column(name = "date")
     private LocalDate localDate;
+
+    @Column(name = "description")
     private String description;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     public LocalDate getLocalDate() {
