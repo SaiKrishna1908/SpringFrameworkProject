@@ -1,13 +1,24 @@
 package com.spring5.springserviceproject.Model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "owner")
 public class Owner extends Person {
 
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "telephone")
     private String telephone;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "owner")
+    @Column(name = "pets")
     private Set<Pet> pets = new HashSet<>();
 
     public String getAddress() {

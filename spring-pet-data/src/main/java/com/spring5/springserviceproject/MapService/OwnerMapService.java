@@ -5,11 +5,13 @@ import com.spring5.springserviceproject.Model.Pet;
 import com.spring5.springserviceproject.Service.OwnerService;
 import com.spring5.springserviceproject.Service.PetService;
 import com.spring5.springserviceproject.Service.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default","map"})
 public class OwnerMapService extends MapService<Owner, Long> implements OwnerService {
 
     private final PetService petService;
@@ -68,4 +70,6 @@ public class OwnerMapService extends MapService<Owner, Long> implements OwnerSer
     public Owner findById(Long id) {
         return super.findById(id);
     }
+
+
 }

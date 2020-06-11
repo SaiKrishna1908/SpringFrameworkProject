@@ -1,7 +1,7 @@
 package com.spring5.springserviceproject.MapService;
 
-import com.spring5.springserviceproject.Model.PetType;
-import com.spring5.springserviceproject.Service.PetTypeService;
+import com.spring5.springserviceproject.Model.Speciality;
+import com.spring5.springserviceproject.Service.SpecialityService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -9,29 +9,29 @@ import java.util.Set;
 
 @Service
 @Profile({"default","map"})
-public class PetTypeMapService extends MapService<PetType, Long> implements PetTypeService {
+public class SpecialityMapService extends MapService<Speciality, Long> implements SpecialityService {
     @Override
-    public PetType save(PetType object) {
+    public Speciality save(Speciality object) {
         return super.save(object);
     }
 
     @Override
-    public Set<PetType> findAll() {
+    public Set<Speciality> findAll() {
         return super.findAll();
     }
 
     @Override
     public void deleteByID(Long aLong) {
-        super.deleteById(aLong);
+         super.deleteById(aLong);
     }
 
     @Override
-    public void delete(PetType object) {
-        super.delete(object);
+    public void delete(Speciality object) {
+         super.delete(object);
     }
 
     @Override
-    public PetType findById(Long id) {
+    public Speciality findById(Long id) {
         return super.findById(id);
     }
 }

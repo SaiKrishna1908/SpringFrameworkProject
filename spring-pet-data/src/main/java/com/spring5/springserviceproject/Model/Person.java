@@ -1,7 +1,15 @@
 package com.spring5.springserviceproject.Model;
 
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
+
+@MappedSuperclass
 public class Person  extends  BaseEntity{
+
     private String firstName;
+
     private String secondName;
 
     //Default Constructor

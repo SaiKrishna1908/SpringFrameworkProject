@@ -23,4 +23,5 @@ public class OwnerController {
         model.addAttribute("owners", ownerService.findAll());
         return "owner/index";
     }
+
 }
