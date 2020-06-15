@@ -1,10 +1,18 @@
 package com.spring5.springserviceproject.Model;
 
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+import javax.persistence.MappedSuperclass;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @MappedSuperclass
 public class Person  extends  BaseEntity{
 
@@ -12,24 +20,13 @@ public class Person  extends  BaseEntity{
 
     private String secondName;
 
-    //Default Constructor
-    public Person() { }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
+    public Person(Long id, String firstName, String secondName){
+        super(id);
         this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
+
+    //Default Constructor
 
 
 }

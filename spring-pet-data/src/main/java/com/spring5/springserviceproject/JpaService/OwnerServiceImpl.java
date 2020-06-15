@@ -1,7 +1,6 @@
 package com.spring5.springserviceproject.JpaService;
 
 import com.spring5.springserviceproject.Model.Owner;
-import com.spring5.springserviceproject.Model.PetType;
 import com.spring5.springserviceproject.Repository.OwnerRepository;
 import com.spring5.springserviceproject.Repository.PetRepository;
 import com.spring5.springserviceproject.Repository.PetTypeRepository;
@@ -20,7 +19,8 @@ public class OwnerServiceImpl implements OwnerService {
     private final PetRepository petRepository;
     private final PetTypeRepository petTypeRepository;
 
-    public OwnerServiceImpl(OwnerRepository ownerRepository, PetRepository petRepository, PetTypeRepository petTypeRepository) {
+    public OwnerServiceImpl(OwnerRepository ownerRepository, PetRepository petRepository,
+                            PetTypeRepository petTypeRepository) {
         this.ownerRepository = ownerRepository;
         this.petRepository = petRepository;
         this.petTypeRepository = petTypeRepository;
@@ -28,8 +28,8 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner save(Owner object) {
-        ownerRepository.save(object);
-        return object;
+       return ownerRepository.save(object);
+
     }
 
     @Override
