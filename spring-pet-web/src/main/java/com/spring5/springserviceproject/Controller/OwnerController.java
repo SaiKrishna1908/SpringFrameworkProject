@@ -24,4 +24,9 @@ public class OwnerController {
         return "owner/index";
     }
 
+    @RequestMapping(value = "/search")
+    String searchList(){
+        return "error.html";
+    }
+
 }
