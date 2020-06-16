@@ -32,19 +32,19 @@ class OwnerMapServiceTest {
     @Test
     void findAll() {
         Set<Owner> set = ownerMapService.findAll();
-        assertEquals(1, set.size());
+        assertEquals(2, set.size());
     }
 
     @Test
     void deleteByID() {
         ownerMapService.deleteByID(1L);
-        assertEquals(0, ownerMapService.findAll().size());
+        assertEquals(1, ownerMapService.findAll().size());
     }
 
     @Test
     void delete() {
         ownerMapService.delete(ownerMapService.findById(1L));
-        assertEquals(0, ownerMapService.findAll().size());
+        assertEquals(1, ownerMapService.findAll().size());
     }
 
     @Test
