@@ -4,6 +4,4 @@
 #Spring Framework Pet Clinic
 
 
-Building a web-application using spring framework.
-
-Pet store website using Spring-boot.
+Building a web-application using spring framework.Pet store website using Spring-boot.
