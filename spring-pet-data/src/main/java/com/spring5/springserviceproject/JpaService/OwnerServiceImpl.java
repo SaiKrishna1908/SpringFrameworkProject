@@ -8,6 +8,7 @@ import com.spring5.springserviceproject.Service.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -56,5 +57,10 @@ public class OwnerServiceImpl implements OwnerService {
 
     public Owner findByLastName(String secondName) {
         return ownerRepository.findBySecondName(secondName);
+    }
+
+    @Override
+    public Collection<Owner> findAllBySecondName(String secondName) {
+        return  ownerRepository.findAllBySecondNameLike(secondName);
     }
 }
