@@ -8,6 +8,7 @@ import com.spring5.springserviceproject.Service.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Set;
 
 @Service
@@ -71,5 +72,9 @@ public class OwnerMapService extends MapService<Owner, Long> implements OwnerSer
         return super.findById(id);
     }
 
-
+    //todo : add findAllByLastName in map service
+    @Override
+    public Collection<Owner> findAllBySecondName(String lastname) {
+        return null;
+    }
 }
