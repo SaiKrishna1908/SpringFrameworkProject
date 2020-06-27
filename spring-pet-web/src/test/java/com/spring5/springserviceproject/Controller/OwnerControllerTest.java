@@ -5,6 +5,7 @@ import com.spring5.springserviceproject.Service.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -21,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import  static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -110,6 +112,57 @@ class OwnerControllerTest {
 
         mockMvc.perform(get("/owners/search")).andExpect(status().isOk())
         .andExpect(view().name("error"));
+    }
+
+    @Test
+    void newOwner() throws  Exception{
+
+        mockMvc.perform(get("/owners/new")).andExpect(status().isOk())
+                .andExpect(view().name("owner/createOrUpdateOwnerForm"))
+                .andExpect(model().attributeExists("owner"));
+
+
+    }
+
+    @Test
+    void newOwnerPost() throws Exception{
+
+        Owner owner = Owner.builder().id(1L).firstName("monty").build();
+
+        when(ownerService.save(any())).thenReturn(owner);
+
+
+        mockMvc.perform(post("/owners/new")).andExpect(status().is3xxRedirection())
+        .andExpect(view().name("redirect:/owners/"+owner.getId()))
+        .andExpect(model().attributeExists("owner"));
+
+        verify(ownerService, times(1)).save(any());
+
+    }
+
+    @Test
+    void updateOwner() throws  Exception{
+        Owner owner = Owner.builder().id(1L).build();
+        when(ownerService.findById(any())).thenReturn(owner);
+
+        mockMvc.perform(get("/owners/1/edit")).andExpect(status().isOk())
+                .andExpect(view().name("owner/createOrUpdateOwnerForm"))
+                .andExpect(model().attributeExists("owner"));
+
+    }
+
+    @Test
+    void updatePostOwner() throws Exception{
+        Owner owner = Owner.builder().id(1L).build();
+
+
+        when(ownerService.save(any())).thenReturn(owner);
+
+        mockMvc.perform(post("/owners/1/edit")).andExpect(status().is3xxRedirection())
+                    .andExpect(view().name("redirect:/owners/"+owner.getId()))
+                    .andExpect(model().attributeExists("owner"));
+
+        verify(ownerService, times(1)).save(any());
     }
 
 }

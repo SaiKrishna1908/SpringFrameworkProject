@@ -6,17 +6,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @RequestMapping(value = "/owners")
 @Controller
 public class OwnerController {
+
+    private final  String CREATEOWNERVIEW = "createOrUpdateOwnerForm";
 
     private final OwnerService ownerService;
 
@@ -75,4 +75,47 @@ public class OwnerController {
         }
         return "error";
     }
+
+    @GetMapping("/new")
+    String newOwner(Model model){
+
+        model.addAttribute("owner",Owner.builder().build());
+        return "owner/"+CREATEOWNERVIEW;
+    }
+
+    @PostMapping("/new")
+    String newPostOwner(Model model, @Valid Owner owner, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "owners/"+CREATEOWNERVIEW;
+        }
+        else{
+            Owner savedOwner = ownerService.save(owner);
+            model.addAttribute("owner",savedOwner);
+            return "redirect:/owners/"+savedOwner.getId();
+        }
+    }
+
+    @GetMapping("/{id}/edit")
+    String updateOwner(@PathVariable Long id,Model model) throws Exception{
+        Owner owner = ownerService.findById(id);
+        //todo add validation in-case owner is null
+        model.addAttribute("owner", owner);
+        return "owner/"+CREATEOWNERVIEW;
+
+    }
+
+    @PostMapping("/{id}/edit")
+    String updatePostOwner(@PathVariable Long id, Model model, @Valid Owner owner,BindingResult bindingResult ){
+        if(bindingResult.hasErrors()){
+            return  "owner/"+CREATEOWNERVIEW;
+        }
+        else{
+            owner.setId(id);
+            Owner savedOwner = ownerService.save(owner);
+            model.addAttribute("owner", owner);
+            return "redirect:/owners/"+savedOwner.getId();
+        }
+    }
+
 }
