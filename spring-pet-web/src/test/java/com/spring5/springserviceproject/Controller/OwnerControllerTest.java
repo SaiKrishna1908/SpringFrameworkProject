@@ -5,8 +5,6 @@ import com.spring5.springserviceproject.Service.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -32,7 +30,7 @@ class OwnerControllerTest {
     @Mock
     OwnerService ownerService;
 
-    @InjectMocks
+
     OwnerController controller;
 
     Set<Owner> owners = new HashSet<>();
@@ -43,6 +41,7 @@ class OwnerControllerTest {
         owners.add(Owner.builder().id(1L).build());
         owners.add(Owner.builder().id(2L).build());
         owners.add(Owner.builder().id(3L).build());
+        controller = new OwnerController(ownerService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
