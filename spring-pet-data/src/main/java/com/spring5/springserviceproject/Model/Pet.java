@@ -23,13 +23,14 @@ public class Pet extends BaseEntity{
         this.birthday = localDate;
         this.petType = petType;
         this.owner = owner;
-        this.visits = visits;
+        if(visits !=null)
+            this.visits = visits;
     }
     @Column(name = "name")
     private String name;
 
     @Column(name = "birthday")
-    private LocalDate birthday ;
+    private LocalDate birthday;
 
     @ManyToOne
     @JoinColumn(name = "type_id")
